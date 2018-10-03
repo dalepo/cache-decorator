@@ -42,12 +42,10 @@ export function CachedObservable(options: CacheOptions): any {
                             return original.apply(this, args)
                                 .pipe(
                                     tap(data => {
-                                        console.log('Cache miss');
                                         storage.set(options.key, data);
                                     })
                                 );
                         } else {
-                            console.log('Cache hit');
                             return of(cacheValue.value);
                         }
                     })
